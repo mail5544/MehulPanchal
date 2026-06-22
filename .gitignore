@@ -1,0 +1,16 @@
+# Exclude large image folders (but allow WebP)
+Fitness/
+img/*.jpg
+img/*.jpeg
+img/*.png
+img/Thumbs.db
+more/
+_original_bundles/
+node_modules/
+.DS_Store
+.env
+.env.local
+
+# Keep deployment assets
+!assets/
+.git-rewrite/
