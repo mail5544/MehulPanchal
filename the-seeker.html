@@ -715,7 +715,21 @@ img { display: block; max-width: 100%; }
 .nav-item { padding: 10px 13px; font-size: 14px; font-weight: 500; color: var(--ink); border-radius: var(--r-md); transition: all .15s; }
 .nav-item:hover { background: var(--surface-2); color: var(--accent); }
 .header-cta { display: flex; gap: 12px; align-items: center; }
-.menu-toggle { display: none; }
+.menu-toggle { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--r-md); flex-shrink: 0; background: transparent; }
+.menu-toggle:hover { background: var(--surface-2); }
+.menu-toggle .bars { position: relative; width: 20px; height: 14px; }
+.menu-toggle .bars span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .25s ease, opacity .25s ease, top .25s ease; }
+.menu-toggle .bars span:nth-child(1) { top: 0; }
+.menu-toggle .bars span:nth-child(2) { top: 6px; }
+.menu-toggle .bars span:nth-child(3) { top: 12px; }
+.menu-toggle.active .bars span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+.menu-toggle.active .bars span:nth-child(2) { opacity: 0; }
+.menu-toggle.active .bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+.mobile-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-md); max-height: calc(100vh - 64px); overflow-y: auto; z-index: 99; }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { padding: 15px 24px; font-size: 15px; font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--line); }
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:active, .mobile-nav a:hover { background: var(--surface-2); color: var(--accent); }
 
 /* ============ HERO ============ */
 .hero { position: relative; min-height: 760px; display: flex; flex-direction: column; overflow: hidden; background: #0B0B0F; }
@@ -950,8 +964,12 @@ img { display: block; max-width: 100%; }
 @media (max-width: 1100px) {
   .main-nav { display: none; }
   .menu-toggle { display: inline-flex; }
+  .hero { min-height: 0; }
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
+  .hero-right { display: flex; justify-content: center; margin-top: 36px; }
+  .hero-portrait { max-width: 300px; }
+  .hero-card.tl { left: 0; }
+  .hero-card.br { right: 0; }
   .hero-title { font-size: 48px; }
   .dims-grid, .ventures-grid, .ideas-grid { grid-template-columns: 1fr; }
   .stats-inner { grid-template-columns: repeat(3, 1fr); }
@@ -961,12 +979,14 @@ img { display: block; max-width: 100%; }
 }
 @media (max-width: 768px) {
   .top-strip { display: none; }
+  .header-inner { padding: 14px 20px; gap: 16px; }
   .section, .dims, .journey, .ventures, .warrior, .seeker, .tl-section, .ideas, .csr, .contact { padding: 64px 0; }
-  .hero-title { font-size: 40px; }
-  .section-head h2, .journey-text h2, .warrior-text h2, .seeker-text h2, .csr-text h2, .contact-left h2 { font-size: 34px; }
+  .hero-title { font-size: 38px; }
+  .hero-portrait { max-width: 240px; }
+  .section-head h2, .journey-text h2, .warrior-text h2, .seeker-text h2, .csr-text h2, .contact-left h2 { font-size: 30px; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
   .warrior-stats { grid-template-columns: 1fr 1fr 1fr; }
-  .quote-sec blockquote { font-size: 26px; }
+  .quote-sec blockquote { font-size: 24px; }
   .timeline::before { left: 20px; }
   .tl-row { grid-template-columns: 1fr; gap: 0; }
   .tl-side.l { text-align: left; padding-right: 0; padding-left: 42px; }
@@ -976,6 +996,25 @@ img { display: block; max-width: 100%; }
   .cf-row { grid-template-columns: 1fr; }
   .footer-cols { grid-template-columns: 1fr; }
   .press-logo { font-size: 22px; }
+  .track { grid-template-columns: 96px 1fr auto; gap: 14px; padding: 12px 14px; }
+  .track-name { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .logo-text { display: none; }
+  .hero-title { font-size: 30px; }
+  .hero-roles { gap: 8px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { justify-content: center; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-num { font-size: 30px; }
+  .warrior-stats { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .csr-stats { grid-template-columns: 1fr; }
+  .ci-socials { grid-template-columns: 1fr; }
+  .track { grid-template-columns: 1fr; }
+  .track-thumb { aspect-ratio: 16/9; width: 100%; }
+  .track > span { display: none; }
+  .page-hero h1 { font-size: 30px; }
+  .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
 
 /* ============================================================
@@ -1147,15 +1186,15 @@ img { display: block; max-width: 100%; }
   <div class="container feature-grid">
 
     <!-- Clickable Poster -->
-    <a href="https://youtu.be/84PiWPut0Cs?si=XuBMLQcvySwHYL2D"
+    <a href="https://www.youtube.com/watch?v=Gym-mOyMFgA"
        target="_blank"
        class="feature-media dark reveal"
        style="aspect-ratio:16/9;display:block;position:relative;overflow:hidden;border-radius:20px;">
 
       <!-- YouTube Thumbnail -->
       <img
-        src="https://img.youtube.com/vi/84PiWPut0Cs/maxresdefault.jpg"
-        alt="Shiv Mahimna Stotram"
+        src="https://img.youtube.com/vi/Gym-mOyMFgA/maxresdefault.jpg"
+        alt="Rudrashtakam Trance"
         style="width:100%;height:100%;object-fit:cover;display:block;">
 
       <!-- Play Button -->
@@ -1183,7 +1222,7 @@ img { display: block; max-width: 100%; }
       <span class="kicker">Featured Composition</span>
 
       <h2>
-        Shiv Mahimna <span class="grad-text">Stotram</span>
+        Rudrashtakam <span class="grad-text">Trance</span>
       </h2>
 
       <p>
@@ -1194,14 +1233,14 @@ img { display: block; max-width: 100%; }
       <div style="display:flex;gap:24px;margin-top:8px">
         <div>
           <div class="stat-num" style="font-size:30px;color:#7C5CFF;">
-            115K
+            347K
           </div>
           <span class="eyebrow">Views</span>
         </div>
 
         <div>
           <div class="stat-num" style="font-size:30px;color:#7C5CFF;">
-            9:42
+            2:35
           </div>
           <span class="eyebrow">Duration</span>
         </div>
@@ -1265,6 +1304,17 @@ img { display: block; max-width: 100%; }
     </div>
     <div class="track-list reveal rd1">
 
+      <a href="https://www.youtube.com/watch?v=Gym-mOyMFgA" target="_blank" style="text-decoration:none;color:inherit;">
+        <div class="track">
+          <div class="track-thumb"><img src="https://img.youtube.com/vi/Gym-mOyMFgA/maxresdefault.jpg" alt="" loading="lazy" decoding="async"/></div>
+          <div>
+            <div class="track-name">Rudrashtakam Trance</div>
+            <div class="track-meta">347K views · 2:35 · Devotional</div>
+          </div>
+          <span style="color:#7C5CFF">→</span>
+        </div>
+      </a>
+      
       <a href="https://youtu.be/84PiWPut0Cs?si=XuBMLQcvySwHYL2D" target="_blank" style="text-decoration:none;color:inherit;">
         <div class="track">
           <div class="track-thumb"><img src="https://img.youtube.com/vi/84PiWPut0Cs/mqdefault.jpg" alt="" loading="lazy" decoding="async"/></div>
