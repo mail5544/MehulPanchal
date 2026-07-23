@@ -399,8 +399,11 @@ img { display: block; max-width: 100%; }
   .hero-inner { grid-template-columns: 1fr; }
   .hero-right { display: flex; justify-content: center; margin-top: 36px; }
   .hero-portrait { max-width: 300px; }
-  .hero-card.tl { left: 10px; top: -16px; }
-  .hero-card.br { right: 0; }
+  .hero-card { padding: 8px 11px; }
+  .hero-card .hc-num { font-size: 16px; }
+  .hero-card .hc-label { font-size: 9px; }
+  .hero-card.tl { left: -16px; top: -14px; }
+  .hero-card.br { right: -16px; bottom: -14px; }
   .hero-title { font-size: 48px; }
   .dims-grid, .ventures-grid, .ideas-grid { grid-template-columns: 1fr; }
   .stats-inner { grid-template-columns: repeat(3, 1fr); }
@@ -434,10 +437,8 @@ img { display: block; max-width: 100%; }
   .logo-text { display: none; }
   .hero-title { font-size: 30px; }
   .hero-roles { gap: 8px; }
-  .hero-card { padding: 10px 14px; }
-  .hero-card .hc-num { font-size: 18px; }
-  .hero-card.tl { top: -14px; left: 6px; }
-  .hero-card.br { bottom: 12px; right: -6px; }
+  .hero-card.tl { top: -12px; left: -12px; }
+  .hero-card.br { bottom: -12px; right: -12px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
   .hero-actions .btn { justify-content: center; }
   .stats-inner { grid-template-columns: repeat(2, 1fr); }
