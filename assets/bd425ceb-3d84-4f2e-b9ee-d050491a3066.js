@@ -36,7 +36,7 @@
   <header class="site-header" id="mp-header">
     <div class="header-inner">
       <a href="${HOME}" class="logo">
-        <span class="logo-mark">MP</span>
+        <img src="img/mp-logo.svg" alt="MP" class="logo-mark"/>
         <span class="logo-text"><strong>Mehul J. Panchal</strong><em>Entrepreneur · Athlete · Singer</em></span>
       </a>
       <nav class="main-nav">
@@ -55,7 +55,7 @@
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
-          <span class="logo-mark">MP</span>
+          <img src="img/mp-logo.svg" alt="MP" class="logo-mark"/>
           <div class="footer-tagline">Building Systems. Living Discipline. Seeking Meaning.</div>
           <p class="footer-blurb">CMD of Filter Concept Pvt. Ltd. Entrepreneur, athlete, singer — one human, three disciplines, six ventures.</p>
         </div>

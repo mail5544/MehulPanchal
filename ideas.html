@@ -707,7 +707,7 @@ img { display: block; max-width: 100%; }
 .site-header.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; gap: 40px; }
 .logo { display: flex; align-items: center; gap: 12px; color: var(--ink); }
-.logo-mark { width: 44px; height: 44px; border-radius: var(--r-md); background: var(--grad); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 18px; font-style: italic; }
+.logo-mark { width: auto; height: 40px; display: block; flex-shrink: 0; }
 .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .logo-text strong { font-family: var(--font-display); font-size: 16px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 .logo-text em { font-size: 10px; color: var(--muted); font-style: normal; font-weight: 500; margin-top: 2px; letter-spacing: 0.04em; }
@@ -822,10 +822,13 @@ img { display: block; max-width: 100%; }
 .sub-card { padding: 18px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); margin-bottom: 24px; }
 .sub-card .eyebrow { color: var(--muted); }
 .sub-card .big { font-family: var(--font-display); font-size: 30px; font-weight: 800; margin-top: 4px; }
-.track-list { display: flex; flex-direction: column; gap: 12px; }
-.track { display: grid; grid-template-columns: 104px 1fr auto; gap: 18px; align-items: center; padding: 14px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); transition: all .2s; cursor: pointer; }
+.track-list { display: flex; flex-direction: column; gap: 20px; }
+.track { display: grid; grid-template-columns: 132px 1fr auto; gap: 20px; align-items: center; padding: 16px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); transition: all .2s; cursor: pointer; }
 .track:hover { border-color: var(--accent); transform: translateX(4px); box-shadow: var(--shadow-sm); }
-.track-thumb { aspect-ratio: 16/9; border-radius: var(--r-sm); background: linear-gradient(135deg, #11223a, #0B0B0F); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.8); font-size: 18px; }
+.track-thumb { position: relative; aspect-ratio: 16/9; border-radius: var(--r-sm); overflow: hidden; background: linear-gradient(135deg, #11223a, #0B0B0F); }
+.track-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.track-thumb::after { content: "▶"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px; text-shadow: 0 2px 8px rgba(0,0,0,0.6); background: rgba(11,11,15,0.28); transition: background .2s; }
+.track:hover .track-thumb::after { background: rgba(11,11,15,0.10); }
 .track-name { font-family: var(--font-display); font-size: 19px; font-weight: 700; }
 .track-meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-top: 4px; letter-spacing: 0.04em; }
 
@@ -1155,8 +1158,8 @@ img { display: block; max-width: 100%; }
   <div class="glow b"></div>
   <div class="container page-hero-inner">
     <div class="breadcrumb"><a href="Mehul%20Panchal%20Website%20v2.html">Home</a><span class="sep">/</span><span>Ideas</span></div>
-    <h1>Ideas that shape my <span class="hl">thinking</span>.</h1>
-    <p class="ph-lead">Notes on building, discipline, and meaning written from the workbench, not the podium. Connected to my long form writing on LinkedIn.</p>
+    <h1>Ideas that shape his <span class="hl">thinking</span>.</h1>
+    <p class="ph-lead">Notes on building, discipline, and meaning written from the workbench, not the podium. Connected to his long form writing on LinkedIn.</p>
   </div>
 </section>
 
@@ -1170,7 +1173,7 @@ img { display: block; max-width: 100%; }
         <p>In a market that rewards speed and story, first principles discipline is the rarest moat there is. A reflection on 23 years of building an unglamorous, essential company and why the boring fundamentals always win in the end.</p>
         <span class="idea-link grad-text" style="margin-top:20px">Read the essay →</span>
       </div>
-      <div class="af-media"><img src="img/WhatsApp Image 2026-06-10 at 12.34.56 PM.jpeg" alt="FEATURED ARTICLE IMAGE" class="feature-image"></div>
+      <div class="af-media"><img src="img/WhatsApp Image 2026-06-10 at 12.34.56 PM.webp" alt="FEATURED ARTICLE IMAGE" class="feature-image"></div>
     </a>
   </div>
 </section>
@@ -1186,9 +1189,9 @@ img { display: block; max-width: 100%; }
       <a href="https://www.linkedin.com/in/mehul-panchal-entrepreneur/" target="_blank" rel="noopener" class="btn btn-ghost">Follow on LinkedIn <span class="arrow">→</span></a>
     </div>
     <div class="ideas-grid">
-      <a href="#" class="idea-card reveal rd1"><div class="idea-media"><img src="img/Untitled Project (1).jpg" alt="" class="idea-img img1"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Discipline</span><span class="date">Feb 2026</span></div><h3>Discipline Beyond the Boardroom</h3><p>The 5 AM version of you decides everything else. On training the body to train the mind.</p><span class="idea-link">Read article →</span></div></a>
-      <a href="#" class="idea-card reveal rd2"><div class="idea-media"><img src="img/Untitled Project.jpg" alt="" class="idea-img img2"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Manufacturing</span><span class="date">Jan 2026</span></div><h3>The Filter That Changed My Life</h3><p>How a small cartridge became a global company and what it taught me about keeping only what matters.</p><span class="idea-link">Read article →</span></div></a>
-      <a href="#" class="idea-card reveal rd3"><div class="idea-media"><img src="img/1768210326671.webp" alt="" class="idea-img img3"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Entrepreneurship</span><span class="date">2018</span></div><h3>Entrepreneurship: A New Era</h3><p>We were all entrepreneurs once. Some of us just never stopped. On building when the market rewards sameness.</p><span class="idea-link">Read article →</span></div></a>
+      <a href="#" class="idea-card reveal rd1"><div class="idea-media"><img src="img/Untitled Project (1).webp" alt="" class="idea-img img1"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Discipline</span><span class="date">Feb 2026</span></div><h3>Discipline Beyond the Boardroom</h3><p>The 5 AM version of you decides everything else. On training the body to train the mind.</p><span class="idea-link">Read article →</span></div></a>
+      <a href="#" class="idea-card reveal rd2"><div class="idea-media"><img src="img/Untitled Project.webp" alt="" class="idea-img img2"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Manufacturing</span><span class="date">Jan 2026</span></div><h3>The Filter That Changed His Life</h3><p>How a small cartridge became a global company and what it taught him about keeping only what matters.</p><span class="idea-link">Read article →</span></div></a>
+      <a href="#" class="idea-card reveal rd3"><div class="idea-media"><img src="img/1768210326671.webp" alt="" class="idea-img img3"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Entrepreneurship</span><span class="date">2018</span></div><h3>Entrepreneurship: A New Era</h3><p>Everyone was an entrepreneur once. Some just never stopped. On building when the market rewards sameness.</p><span class="idea-link">Read article →</span></div></a>
       <a href="#" class="idea-card reveal rd1"><div class="idea-media"><img src="img/1764833289766.webp" alt="" class="idea-img img4"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Leadership</span><span class="date">2018</span></div><h3>Avoiding Common Entrepreneurial Mistakes</h3><p>The thorns outnumber the roses and that is the point. Lessons from two decades of filtration.</p><span class="idea-link">Read article →</span></div></a>
       <a href="#" class="idea-card reveal rd2"><div class="idea-media"><img src="img/1770189913370.webp" alt="" class="idea-img img5"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Manufacturing</span><span class="date">2018</span></div><h3>Manufacturing Through Fluctuating Markets</h3><p>Mapping the terrain when the terrain itself moves. A practical framework for industrial founders.</p><span class="idea-link">Read article →</span></div></a>
       <a href="#" class="idea-card reveal rd3"><div class="idea-media"><img src="img/b20.webp" alt="" class="idea-img img6" style="height: 90%; width: 90%; object-fit: cover;"></div><div class="idea-body"><div class="idea-tags"><span class="cat">Sustainability</span><span class="date">2025</span></div><h3>Filtration as a Principle, Not a Product</h3><p>Keep what matters. Let the rest pass. On building a company and a life around what you choose to retain.</p><span class="idea-link">Read article →</span></div></a>
