@@ -740,8 +740,14 @@ img { display: block; max-width: 100%; }
 .mobile-nav a { padding: 15px 24px; font-size: 15px; font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--line); }
 .mobile-nav a:last-child { border-bottom: none; }
 .mobile-nav a:active, .mobile-nav a:hover { background: var(--surface-2); color: var(--accent); }
-/* the 8-item nav stops fitting well before 1100px - switch to the hamburger at 1280px */
-@media (max-width: 1280px) {
+/* Nav sizing. At full size the header needs ~1186px, which is inside the range
+   a 1920px screen at 150%% Windows scaling reports (~1265px CSS). So tighten the
+   nav first, and only fall back to the hamburger once it genuinely stops fitting. */
+@media (max-width: 1400px) {
+  .header-inner { padding: 16px 20px; gap: 14px; }
+  .nav-item { padding: 10px 7px; font-size: 13px; }
+}
+@media (max-width: 1199px) {
   .main-nav { display: none; }
   .menu-toggle { display: inline-flex; }
 }
