@@ -3,7 +3,7 @@
    Each page sets <body data-page="builder"> to mark active nav.
    ============================================================ */
 (function () {
-  const HOME = "Mehul%20Panchal%20Website%20v2.html";
+  const HOME = "index.html";
 
   // nav: [label, href, pageKey]
   const NAV = [
@@ -46,8 +46,15 @@
       </nav>
       <div class="header-cta">
         <a href="contact.html" class="btn btn-primary">Get in touch</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+          <span class="bars"><span></span><span></span><span></span></span>
+        </button>
       </div>
     </div>
+    <nav class="mobile-nav" id="mobileNav">
+      ${NAV.map(([label, href]) => `<a href="${href}">${label}</a>`).join("")}
+      <a href="contact.html">Get in touch →</a>
+    </nav>
   </header>`;
 
   const footer = `
@@ -125,6 +132,24 @@
     document.querySelectorAll(".palette-opt").forEach(b => {
       b.classList.toggle("active", b.getAttribute("data-theme") === savedTheme);
     });
+  }
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+  if (menuToggle && mobileNav) {
+    const closeMenu = () => {
+      mobileNav.classList.remove("open");
+      menuToggle.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+    };
+    menuToggle.addEventListener("click", () => {
+      const open = mobileNav.classList.toggle("open");
+      menuToggle.classList.toggle("active", open);
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    mobileNav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+    window.addEventListener("resize", () => { if (window.innerWidth > 1280) closeMenu(); });
   }
 
   // Header scroll state

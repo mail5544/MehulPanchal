@@ -2,10 +2,20 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="favicon.png">
 <title>The Builder — Mehul J. Panchal | Founder &amp; CMD, Filter Concept</title>
 <meta name="description" content="Mehul J. Panchal, The Builder — founder and CMD of Filter Concept Pvt. Ltd. 23+ years, 5,000+ customers, 90+ countries. Business philosophy, awards, thought leadership.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SQ78RHY78P"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SQ78RHY78P');
+</script>
 <style>/* cyrillic-ext */
 @font-face {
   font-family: 'JetBrains Mono';
@@ -705,16 +715,16 @@ img { display: block; max-width: 100%; }
 /* ============ HEADER ============ */
 .site-header { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid transparent; transition: all .2s ease; }
 .site-header.scrolled { background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; gap: 40px; }
-.logo { display: flex; align-items: center; gap: 12px; color: var(--ink); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; gap: 20px; }
+.logo { display: flex; align-items: center; gap: 12px; color: var(--ink); flex-shrink: 0; }
 .logo-mark { width: auto; height: 40px; display: block; flex-shrink: 0; }
 .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .logo-text strong { font-family: var(--font-display); font-size: 16px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 .logo-text em { font-size: 10px; color: var(--muted); font-style: normal; font-weight: 500; margin-top: 2px; letter-spacing: 0.04em; }
-.main-nav { display: flex; gap: 2px; }
-.nav-item { padding: 10px 13px; font-size: 14px; font-weight: 500; color: var(--ink); border-radius: var(--r-md); transition: all .15s; }
+.main-nav { display: flex; gap: 2px; flex-wrap: nowrap; }
+.nav-item { padding: 10px 10px; font-size: 13.5px; font-weight: 500; color: var(--ink); border-radius: var(--r-md); transition: all .15s; white-space: nowrap; }
 .nav-item:hover { background: var(--surface-2); color: var(--accent); }
-.header-cta { display: flex; gap: 12px; align-items: center; }
+.header-cta { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
 .menu-toggle { display: none; width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--r-md); flex-shrink: 0; background: transparent; }
 .menu-toggle:hover { background: var(--surface-2); }
 .menu-toggle .bars { position: relative; width: 20px; height: 14px; }
@@ -730,6 +740,11 @@ img { display: block; max-width: 100%; }
 .mobile-nav a { padding: 15px 24px; font-size: 15px; font-weight: 500; color: var(--ink); border-bottom: 1px solid var(--line); }
 .mobile-nav a:last-child { border-bottom: none; }
 .mobile-nav a:active, .mobile-nav a:hover { background: var(--surface-2); color: var(--accent); }
+/* the 8-item nav stops fitting well before 1100px - switch to the hamburger at 1280px */
+@media (max-width: 1280px) {
+  .main-nav { display: none; }
+  .menu-toggle { display: inline-flex; }
+}
 
 /* ============ HERO ============ */
 .hero { position: relative; min-height: 760px; display: flex; flex-direction: column; overflow: hidden; background: #0B0B0F; }
@@ -1159,7 +1174,7 @@ img { display: block; max-width: 100%; }
   <div class="glow a"></div>
   <div class="glow b"></div>
   <div class="container page-hero-inner">
-    <div class="breadcrumb"><a href="Mehul%20Panchal%20Website%20v2.html">Home</a><span class="sep">/</span><span>The Builder</span></div>
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>The Builder</span></div>
     <h1>The <span class="hl">industrialist</span> who builds systems that outlast him.</h1>
     <p class="ph-lead">Founder &amp; CMD of Filter Concept Pvt. Ltd. Since 2002 from a ₹10,000 idea to India's largest industrial filter manufacturer, serving 90+ countries across 50+ industries.</p>
     <div class="ph-actions">
@@ -1306,7 +1321,7 @@ img { display: block; max-width: 100%; }
   </div>
 </section>
 
-<script src="assets/ac1190c4-16b7-417d-9413-b11af5e990ce.js"></script>
+<script src="assets/mp-chrome.js"></script>
 
 
 </body></html>
