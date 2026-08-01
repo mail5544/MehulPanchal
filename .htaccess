@@ -1,0 +1,31 @@
+# Hostinger (LiteSpeed) — serve the site at clean, extension-less URLs.
+# Vercel ignores this file and reads vercel.json instead; both can coexist.
+#
+# If uploading this ever produces a 500 error, delete the "Options" line
+# below first — some shared hosts refuse that directive. Everything else
+# here is standard mod_rewrite and is safe.
+
+Options -MultiViews
+
+RewriteEngine On
+
+# The homepage used to be "Mehul Panchal Website v2.html". Send anything
+# still pointing at it — old Google results, shared links — to the root.
+RewriteCond %{THE_REQUEST} \s/+Mehul[^\s]*\.html [NC]
+RewriteRule ^ / [R=301,L]
+
+# /index.html and /index -> /
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# /about.html -> /about  (301 so existing search results keep their ranking)
+RewriteCond %{THE_REQUEST} \s/+([^\s?]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# /about -> about.html, internally, without changing what the address bar shows.
+# Real files and directories are left alone, so /img/... and /assets/... are
+# never touched.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
