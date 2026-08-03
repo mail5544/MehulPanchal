@@ -16,3 +16,6 @@ node_modules/
 .git-rewrite/
 
 .vercel
+
+# Raw article drafts (source .docx, not a web asset)
+/a/
