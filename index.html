@@ -45,9 +45,9 @@
     <nav class="main-nav">
       <a href="index.html" class="nav-item">Home</a>
       <a href="about.html" class="nav-item">About</a>
-      <a href="the-builder.html" class="nav-item">The Builder</a>
-      <a href="the-warrior.html" class="nav-item">The Warrior</a>
-      <a href="the-seeker.html" class="nav-item">The Seeker</a>
+      <a href="the-builder.html" class="nav-item"><span class="nav-the">The </span>Builder</a>
+      <a href="the-warrior.html" class="nav-item"><span class="nav-the">The </span>Warrior</a>
+      <a href="the-seeker.html" class="nav-item"><span class="nav-the">The </span>Seeker</a>
       <a href="ventures.html" class="nav-item">Ventures</a>
       <a href="ideas.html" class="nav-item">Ideas</a>
       <a href="recognition.html" class="nav-item">Recognition</a>
@@ -535,7 +535,7 @@ if (menuToggle && mobileNav) {
     menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  window.addEventListener('resize', () => { if (window.innerWidth > 1280) closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
 }
 
 // Scroll reveal

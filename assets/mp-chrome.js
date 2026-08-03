@@ -41,7 +41,7 @@
       </a>
       <nav class="main-nav">
         ${NAV.map(([label, href, key]) =>
-          `<a href="${href}" class="nav-item${key === active ? ' active' : ''}">${label}</a>`
+          `<a href="${href}" class="nav-item${key === active ? ' active' : ''}">${label.replace(/^The /, '<span class="nav-the">The </span>')}</a>`
         ).join("")}
       </nav>
       <div class="header-cta">
@@ -149,7 +149,7 @@
       menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
     mobileNav.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
-    window.addEventListener("resize", () => { if (window.innerWidth > 1280) closeMenu(); });
+    window.addEventListener("resize", () => { if (window.innerWidth > 820) closeMenu(); });
   }
 
   // Header scroll state
