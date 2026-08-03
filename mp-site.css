@@ -282,7 +282,7 @@ img { display: block; max-width: 100%; }
 .warrior-stats span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #98A6B5; margin-top: 8px; display: block; }
 .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .ig-cell { aspect-ratio: 1; border-radius: var(--r-sm); background: linear-gradient(135deg, #15243c, #0e1828); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
-.ig-cell::after { content: ""; position: absolute; inset: 0; background: var(--grad); opacity: 0; transition: opacity .2s; }
+.ig-cell::after { content: ""; position: absolute; inset: 0; background: var(--grad); opacity: 0; transition: opacity .2s; pointer-events: none; }
 .ig-cell:hover::after { opacity: 0.18; }
 .ig-cell img { width: 100%; height: 100%; object-fit: contain; display: block; }
 

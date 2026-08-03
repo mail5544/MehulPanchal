@@ -138,9 +138,25 @@
     lastFocused = null;
   }
 
+  // Finds the image under a click. A decorative overlay stretched across a
+  // cell — .gallery-cell::after, .ig-cell::after — becomes the event target
+  // and hides the image from closest(), so fall back to hit-testing the point
+  // that was actually clicked. Catches any such overlay, not just those two.
+  function imageAt(e) {
+    var direct = e.target.closest ? e.target.closest("img") : null;
+    if (direct) return direct;
+    if (!document.elementsFromPoint) return null;
+    if (typeof e.clientX !== "number" || (!e.clientX && !e.clientY)) return null;
+    var stack = document.elementsFromPoint(e.clientX, e.clientY) || [];
+    for (var i = 0; i < stack.length; i++) {
+      if (stack[i].tagName === "IMG") return stack[i];
+    }
+    return null;
+  }
+
   // Delegated, so images added later still work without re-binding.
   document.addEventListener("click", function (e) {
-    var img = e.target.closest ? e.target.closest("img") : null;
+    var img = imageAt(e);
     if (!img || !zoomable(img)) return;
     e.preventDefault();
     open(img);
