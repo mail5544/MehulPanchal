@@ -1081,8 +1081,8 @@ img { display: block; max-width: 100%; }
 
 /* Prose / narrative blocks */
 .prose-section { padding: 96px 0; }
-.prose-grid { display: grid; grid-template-columns: 320px 1fr; gap: 64px; align-items: start; }
-.prose-aside { position: sticky; top: 110px; }
+.prose-grid { display: block; max-width: 760px; margin: 0 auto; }
+.prose-aside { position: static; margin-bottom: 40px; }
 .prose-aside .kicker { margin-bottom: 14px; }
 .prose-aside h2 { font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; }
 .prose-aside p { color: var(--muted); font-size: 15px; margin-top: 14px; line-height: 1.65; }
@@ -1159,8 +1159,6 @@ img { display: block; max-width: 100%; }
 .award-feat .af-media { background: linear-gradient(135deg, #11223a, #0B0B0F); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); min-height: 280px; }
 
 @media (max-width: 1100px) {
-  .prose-grid { grid-template-columns: 1fr; gap: 32px; }
-  .prose-aside { position: static; }
   .feature-grid { grid-template-columns: 1fr; gap: 36px; }
   .feature-grid.reverse .feature-media { order: 0; }
   .phil-grid { grid-template-columns: 1fr 1fr; }
@@ -1227,14 +1225,27 @@ img { display: block; max-width: 100%; }
 
 /* Article pages (Ideas detail) */
 .article-hero .ph-tags { margin-top: 0; margin-bottom: 22px; }
-.article-byline { display: flex; align-items: center; gap: 12px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
-.article-byline .am-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--grad); padding: 9px; flex-shrink: 0; }
+.article-hero .page-hero-inner { display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: center; }
+.article-hero .prose-aside { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: var(--r-lg); padding: 28px 24px; margin-bottom: 0; backdrop-filter: blur(8px); }
+.article-hero .article-byline { border-bottom-color: rgba(255,255,255,0.14); }
+.article-hero .article-byline strong { color: white; }
+.article-hero .article-byline span { color: rgba(255,255,255,0.6); }
+.article-hero .am-row { color: rgba(255,255,255,0.55); }
+.article-hero .am-row strong { color: white; }
+.article-hero .article-back { border-top-color: rgba(255,255,255,0.14); color: var(--teal); }
+.article-hero .article-back:hover { color: #fff; }
+@media (max-width: 900px) {
+  .article-hero .page-hero-inner { grid-template-columns: 1fr; }
+  .article-hero .prose-aside { margin-top: 32px; }
+}
+.article-byline { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
+.article-byline .am-avatar { width: auto; height: 48px; flex-shrink: 0; }
 .article-byline strong { display: block; font-size: 14px; }
 .article-byline span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
 .article-meta-rows { display: flex; flex-direction: column; gap: 12px; }
-.am-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
-.am-row strong { color: var(--ink); font-weight: 700; text-align: right; }
-.article-back { display: inline-flex; align-items: center; gap: 6px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); text-decoration: none; }
+.am-row { display: flex; justify-content: center; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+.am-row strong { color: var(--ink); font-weight: 700; text-align: left; }
+.article-back { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); text-decoration: none; }
 .article-back:hover { color: var(--accent-hover); }
 .article-closing { font-family: var(--font-display); font-weight: 600; font-size: 19px !important; color: var(--ink) !important; }
 .article-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
@@ -1252,20 +1263,16 @@ img { display: block; max-width: 100%; }
   <div class="glow a"></div>
   <div class="glow b"></div>
   <div class="container page-hero-inner">
-    <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="ideas.html">Ideas</a><span class="sep">/</span><span>Avoiding Common Entrepreneurial Mistakes</span></div>
-    <div class="ph-tags">
-      <span class="ph-tag">Leadership</span>
-      <span class="ph-tag">2018</span>
-      <span class="ph-tag">8 min read</span>
+    <div class="ph-main">
+      <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><a href="ideas.html">Ideas</a><span class="sep">/</span><span>Avoiding Common Entrepreneurial Mistakes</span></div>
+      <div class="ph-tags">
+        <span class="ph-tag">Leadership</span>
+        <span class="ph-tag">2018</span>
+        <span class="ph-tag">8 min read</span>
+      </div>
+      <h1>Avoiding Common Entrepreneurial Mistakes</h1>
+      <p class="ph-lead">The thorns outnumber the roses — and that is the point. Lessons from two decades of building, failing, and filtering what actually matters.</p>
     </div>
-    <h1>Avoiding Common Entrepreneurial Mistakes</h1>
-    <p class="ph-lead">The thorns outnumber the roses — and that is the point. Lessons from two decades of building, failing, and filtering what actually matters.</p>
-  </div>
-</section>
-
-
-<section class="prose-section">
-  <div class="container prose-grid">
     <aside class="prose-aside reveal">
       <div class="article-byline">
         <img src="img/mp-logo.svg" alt="MP" class="am-avatar">
@@ -1278,6 +1285,12 @@ img { display: block; max-width: 100%; }
       </div>
       <a href="ideas.html" class="article-back">← All Ideas</a>
     </aside>
+  </div>
+</section>
+
+
+<section class="prose-section">
+  <div class="container prose-grid">
     <div class="prose-body">
       <p>Nobody talks about the mistakes the way they talk about the wins. The pitch decks that get shared are the ones that raised money. The case studies that get taught are the ones that ended in acquisition. The stories that go viral are the ones with clean three-act arcs: struggle, pivot, &amp; success.</p>
       <p>But the real curriculum of entrepreneurship is written in the decisions that did not work. The hires that seemed obvious and turned out to be catastrophic. The products that customers said they wanted and then did not buy. The partnerships that looked like shortcuts and became expensive detours.</p>
