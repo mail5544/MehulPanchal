@@ -238,25 +238,36 @@
         <div class="venture-foot"><span class="venture-url">ecoconcept.green</span><span style="color:#10B981">→</span></div>
       </a>
 
-      <a href="#" class="venture-card reveal rd2" style="border-top-color:#7C5CFF;text-decoration:none;color:inherit;">
+      <div class="venture-card venture-card--soon reveal rd2" role="button" tabindex="0" style="border-top-color:#7C5CFF" data-venture-name="Core Concept" data-venture-status="Coming Soon" data-venture-icon="CC" data-venture-color="#7C5CFF" data-venture-color2="#5B3FD6" data-venture-desc="A business automation platform for manufacturing — CRM, ERP, HRMS and Accounts born from FCPL's 23 years of operational knowledge. Launching soon.">
         <div class="venture-icon" style="background:linear-gradient(135deg,#7C5CFF,#5B3FD6)">CC</div>
         <h3>Core Concept</h3>
         <div class="venture-tag" style="color:#7C5CFF">Business Automation · Manufacturing Intelligence</div>
         <p class="venture-desc">Helping manufacturing digitise and optimise. CRM · ERP · HRMS · Accounts born from FCPL's 23 years of operational knowledge.</p>
         <div class="venture-foot"><span class="venture-url">Coming Soon</span><span style="color:#7C5CFF">→</span></div>
-      </a>
+      </div>
 
-      <a href="#" class="venture-card reveal rd3" style="border-top-color:#8B5E3C;text-decoration:none;color:inherit;">
+      <div class="venture-card venture-card--soon reveal rd3" role="button" tabindex="0" style="border-top-color:#8B5E3C" data-venture-name="Concept Cafe" data-venture-status="In Development" data-venture-icon="CF" data-venture-color="#B07A4F" data-venture-color2="#6E4528" data-venture-desc="An upcoming premium cafe concept — Mehul's philosophy of precision and experience design, reimagined for hospitality.">
         <div class="venture-icon" style="background:linear-gradient(135deg,#A06B43,#6E4528)">CF</div>
         <h3>Concept Cafe</h3>
         <div class="venture-tag" style="color:#B07A4F">Experiential Hospitality · In Development</div>
         <p class="venture-desc">An upcoming premium cafe concept. Mehul's philosophy of precision and experience design reimagined for hospitality.</p>
         <div class="venture-foot"><span class="venture-url">In Development</span><span style="color:#B07A4F">→</span></div>
-      </a>
+      </div>
 
     </div>
   </div>
 </section>
+
+<div class="venture-modal" id="ventureModal" aria-hidden="true">
+  <div class="venture-modal-backdrop" data-vm-close></div>
+  <div class="venture-modal-card" role="dialog" aria-modal="true" aria-labelledby="vmTitle">
+    <button class="venture-modal-close" type="button" data-vm-close aria-label="Close">×</button>
+    <div class="venture-modal-icon" id="vmIcon"></div>
+    <h3 id="vmTitle"></h3>
+    <span class="venture-modal-status" id="vmStatus"></span>
+    <p id="vmDesc"></p>
+  </div>
+</div>
 
 <!-- WARRIOR -->
 <section class="warrior" id="warrior">
@@ -350,7 +361,7 @@
         <span class="kicker">Ideas</span>
         <h2>Ideas that shape his thinking.</h2>
       </div>
-      <a href="#" class="btn btn-ghost">All ideas <span class="arrow">→</span></a>
+      <a href="ideas.html" class="btn btn-ghost">All ideas <span class="arrow">→</span></a>
     </div>
     <div class="ideas-grid">
       <a href="#" class="idea-card reveal rd1">
@@ -552,6 +563,91 @@ window.addEventListener('message', (e) => {
   if (d.type === '__deactivate_edit_mode') tweaks.classList.remove('show');
 });
 try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e) {}
+
+// Venture "coming soon" popup
+const ventureModal = document.getElementById('ventureModal');
+if (ventureModal) {
+  const vmCard = ventureModal.querySelector('.venture-modal-card');
+  const vmIcon = document.getElementById('vmIcon');
+  const vmTitle = document.getElementById('vmTitle');
+  const vmStatus = document.getElementById('vmStatus');
+  const vmDesc = document.getElementById('vmDesc');
+
+  const openVentureModal = (card) => {
+    const color = card.dataset.ventureColor || '#1E73E8';
+    const color2 = card.dataset.ventureColor2 || color;
+    vmCard.style.setProperty('--vm-color', color);
+    vmIcon.style.background = `linear-gradient(135deg, ${color}, ${color2})`;
+    vmIcon.textContent = card.dataset.ventureIcon || '';
+    vmTitle.textContent = card.dataset.ventureName || '';
+    vmStatus.textContent = card.dataset.ventureStatus || '';
+    vmDesc.textContent = card.dataset.ventureDesc || '';
+    ventureModal.classList.add('open');
+    ventureModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeVentureModal = () => {
+    ventureModal.classList.remove('open');
+    ventureModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.venture-card--soon').forEach(card => {
+    card.addEventListener('click', () => openVentureModal(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openVentureModal(card); }
+    });
+  });
+
+  ventureModal.querySelectorAll('[data-vm-close]').forEach(el => el.addEventListener('click', closeVentureModal));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeVentureModal(); });
+}
+
+// Contact form validation
+document.querySelectorAll('.contact-form').forEach(form => {
+  const nameField = form.querySelector('input[type="text"]');
+  const emailField = form.querySelector('input[type="email"]');
+  const messageField = form.querySelector('textarea');
+  const submitBtn = form.querySelector('button');
+  if (!nameField || !emailField || !messageField || !submitBtn) return;
+
+  const setError = (field, msg) => {
+    const wrap = field.closest('.cf-field');
+    wrap.classList.add('invalid');
+    let err = wrap.querySelector('.cf-error');
+    if (!err) {
+      err = document.createElement('span');
+      err.className = 'cf-error';
+      wrap.appendChild(err);
+    }
+    err.textContent = msg;
+  };
+  const clearError = (field) => field.closest('.cf-field').classList.remove('invalid');
+
+  [nameField, emailField, messageField].forEach(field => {
+    field.addEventListener('input', () => clearError(field));
+  });
+
+  submitBtn.addEventListener('click', () => {
+    let firstInvalid = null;
+    const fail = (field, msg) => { setError(field, msg); firstInvalid = firstInvalid || field; };
+
+    if (!nameField.value.trim()) fail(nameField, 'Please enter your name');
+    else clearError(nameField);
+
+    const emailVal = emailField.value.trim();
+    if (!emailVal) fail(emailField, 'Please enter your email');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) fail(emailField, 'Please enter a valid email');
+    else clearError(emailField);
+
+    if (!messageField.value.trim()) fail(messageField, 'Please enter a message');
+    else clearError(messageField);
+
+    if (firstInvalid) { firstInvalid.focus(); return; }
+
+    // TODO: wire this up to a real submission endpoint — nothing is sent yet.
+  });
+});
 
 // Palette switching
 const THEME_MAP = { 'default': '', 'ocean': 'ocean', 'sky': 'sky', 'violet': 'violet' };

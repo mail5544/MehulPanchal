@@ -173,6 +173,52 @@
   });
   try { window.parent.postMessage({ type: "__edit_mode_available" }, "*"); } catch (e) {}
 
+  // Contact form validation
+  document.querySelectorAll(".contact-form").forEach(form => {
+    const nameField = form.querySelector('input[type="text"]');
+    const emailField = form.querySelector('input[type="email"]');
+    const messageField = form.querySelector("textarea");
+    const submitBtn = form.querySelector("button");
+    if (!nameField || !emailField || !messageField || !submitBtn) return;
+
+    const setError = (field, msg) => {
+      const wrap = field.closest(".cf-field");
+      wrap.classList.add("invalid");
+      let err = wrap.querySelector(".cf-error");
+      if (!err) {
+        err = document.createElement("span");
+        err.className = "cf-error";
+        wrap.appendChild(err);
+      }
+      err.textContent = msg;
+    };
+    const clearError = (field) => field.closest(".cf-field").classList.remove("invalid");
+
+    [nameField, emailField, messageField].forEach(field => {
+      field.addEventListener("input", () => clearError(field));
+    });
+
+    submitBtn.addEventListener("click", () => {
+      let firstInvalid = null;
+      const fail = (field, msg) => { setError(field, msg); firstInvalid = firstInvalid || field; };
+
+      if (!nameField.value.trim()) fail(nameField, "Please enter your name");
+      else clearError(nameField);
+
+      const emailVal = emailField.value.trim();
+      if (!emailVal) fail(emailField, "Please enter your email");
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) fail(emailField, "Please enter a valid email");
+      else clearError(emailField);
+
+      if (!messageField.value.trim()) fail(messageField, "Please enter a message");
+      else clearError(messageField);
+
+      if (firstInvalid) { firstInvalid.focus(); return; }
+
+      // TODO: wire this up to a real submission endpoint — nothing is sent yet.
+    });
+  });
+
   // Palette switching
   const THEME_MAP = { "default": "", "ocean": "ocean", "sky": "sky", "violet": "violet" };
   document.querySelectorAll(".palette-opt").forEach(btn => {
